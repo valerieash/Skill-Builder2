@@ -64,39 +64,35 @@ public class Date {
      * @return the numeric value of the month.
      */
     public static int getMonthNumber(String name) {
-        //switch case /n replacing break with return
-        switch (name) {
-            case "January":
-                return 1;
-            case "February":
+        if (name.equalsIgnoreCase("January")) {
+            return 1;
+        } else if (name.equalsIgnoreCase("February")){
                 return 2;
-            case "March":
+        } else if (name.equalsIgnoreCase("March")){
                 return 3;
-            case "April":
+        } else if (name.equalsIgnoreCase("April")){
                 return 4;
-            case "May":
+        } else if (name.equalsIgnoreCase( "May")){
                 return 5;
-            case "June":
+        } else if (name.equalsIgnoreCase("June")){
                 return 6;
-            case "July":
+        } else if (name.equalsIgnoreCase("July")){
                 return 7;
-            case "August":
+        } else if (name.equalsIgnoreCase("August")){
                 return 8;
-            case "September":
+        } else if (name.equalsIgnoreCase("September")){
                 return 9;
-            case "October":
+        } else if (name.equalsIgnoreCase("October")){
                 return 10;
-            case "November":
+        } else if (name.equalsIgnoreCase("November")){
                 return 11;
-            case "December":
-                return 12;
-            default:
-                return -1;
+        } else if (name.equalsIgnoreCase("December")) {
+            return 12;
+        }
+        return -1;
 
 
         }
-
-    }
 
     /**
      * Returns the name of the month given the numeric value provided by month
