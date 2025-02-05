@@ -11,12 +11,16 @@ public class Date {
      * @param year the year
      * @return true if the year is a leap year; otherwise false.
      */
-    public static boolean isLeapYear(int year) {
-        //Leap Year
-        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+    public static boolean isLeapYear(int year){
+        if (year % 400 == 0){
             return true;
+        }else if (year % 100 == 0){
+            return false;
+        } else if (year % 4 == 0){
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**
@@ -26,12 +30,27 @@ public class Date {
      * @return the name of the day given by dayValue
      */
     public static String getNameOfDay(int dayValue) {
-//?? help
-        String[] daysOfTheWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
-        int day = dayValue % 7;
-        String dayOfTheWeek = daysOfTheWeek[day];
-        return dayOfTheWeek;
+        if (dayValue == 0) {
+            return "Sunday";
+        } else if (dayValue == 1 || dayValue == -6) {
+            return "Monday";
+        }else if(dayValue == 2 || dayValue == -5) {
+            return "Tuesday";
+        } else if(dayValue == 3 || dayValue == -4) {
+            return "Wednesday";
+        } else if (dayValue == 4 || dayValue == -3) {
+            return "Thursday";
+        }else if (dayValue == 5 || dayValue == -2) {
+            return "Friday";
+        }else if(dayValue == 6 || dayValue == -1) {
+            return "Saturday";
+        }else {
+            return null;
+        }
     }
+
+
+
 
     /**
      * \
@@ -45,7 +64,7 @@ public class Date {
      * @return the numeric value of the month.
      */
     public static int getMonthNumber(String name) {
-        //switch case /n rplacing break with return
+        //switch case /n replacing break with return
         switch (name) {
             case "January":
                 return 1;
@@ -135,7 +154,8 @@ public class Date {
             case 2:
                 if (isLeapYear(year)) {
                     return 29;
-                }
+                } else
+                    return 28;
             case 3:
                 return 31;
             case 4:
@@ -156,8 +176,9 @@ public class Date {
                 return 30;
             case 12:
                 return 31;
+            default:
+                return -1;
         }
-        return -1;
     }
 
     /**
@@ -172,9 +193,10 @@ public class Date {
             case "January":
                 return 31;
             case "February":
-                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                if (isLeapYear(year)) {
+                    return 29;
+                }else
                     return 28;
-                }
 
             case "March":
                 return 31;
@@ -210,16 +232,15 @@ public class Date {
      */
     public static int getMonthOffset(int month, int year) {
         if (month < 1 || month > 12) {
-            return -1;
-        }
+            return -1; }
 
-        int[] mof = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
-        int[] tof = {0, 3, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6};
+        int[] moffset = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
+        int[] loffset = {0, 3, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6};
 
         if (isLeapYear(year)) {
-            return mof[month - 1];
+            return loffset[month - 1];
         } else {
-            return tof[month - 1];
+            return moffset[month - 1];
         }
     }
 
