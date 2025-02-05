@@ -226,6 +226,8 @@ Date.getNumberOfDaysInMonth(1, 2024)
 ```
 
 results in `29`.
+//check if its a leap year, leap years have less days
+returns days in the month
 
 ### Calculating the Day of Week
 
